@@ -2,6 +2,35 @@ jQuery(function () {
 
     var dienteSeleccionado = null;
 
+    function drawTratamientoEnTabla(tratamiento) {
+        var $tr = $("<tr></tr>");
+        var $tdDiente = $("<td></td>");
+        $tdDiente.text(tratamiento.diente.id);
+        var $tdCara = $("<td></td>");
+        $tdCara.text(tratamiento.cara);
+        var $tdTratamiento = $("<td></td>");
+        $tdTratamiento.text(tratamiento.tratamiento);
+        $tr.append($tdDiente);
+        $tr.append($tdCara);
+        $tr.append($tdTratamiento);
+        $("#tbl-tratamientos tbody").append($tr);
+    }
+
+    function drawTablaTratamientos() {
+        var tratamientosAplicados = vm.tratamientosAplicados();
+        var $tablaTratamientos = $("#tbl-tratamientos tbody");
+        $tablaTratamientos.empty();
+        for (var i = 0; i < tratamientosAplicados.length; i++) {
+            var tratamientoAplicado = tratamientosAplicados[i];
+            drawTratamientoEnTabla(tratamientoAplicado);
+        }
+        if (tratamientosAplicados.length === 0) {
+            var $tr = $("<tr></tr>");
+            $tr.append('<td colspan="3">Todavía no se ha cargado ningún tratamiento.</td>');
+            $tablaTratamientos.append($tr);
+        }
+    }
+
     function drawDiente(svg, parentGroup, diente) {
         if (!diente)
             throw new Error('Error no se ha especificado el diente.');
@@ -138,6 +167,9 @@ jQuery(function () {
         vm.dienteSeleccionado = null;
         $("#div-tratamiento").addClass("hidden");
         renderSvg();
+
+        drawTablaTratamientos();
+
         $("#modal-guardado-exito").modal("show");
     });
 
@@ -150,19 +182,19 @@ jQuery(function () {
             var c = t.cara;
             if (d.id == vm.dienteSeleccionado.id && c == vm.caraSeleccionada) {
                 objetoAEliminar = t;
-                tratamientosAplicados = tratamientosAplicados.splice(i, 1);
+                console.log("OKKKK");
+                tratamientosAplicados.splice(i, 1);
                 break;
             }
         }
         if (objetoAEliminar !== null) {
             vm.dienteSeleccionado = null;
             vm.caraSeleccionada = null;
-            console.log(tratamientosAplicados);
-            //tratamientosAplicados.remove(objetoAEliminar);
             $("#div-tratamiento").addClass("hidden");
             renderSvg();
-            $("#modal-eliminado-exito").modal("show");
             
+            drawTablaTratamientos();
+            $("#modal-eliminado-exito").modal("show");
         }
     });
 
