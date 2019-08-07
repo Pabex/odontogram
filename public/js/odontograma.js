@@ -1,7 +1,6 @@
 jQuery(function(){
 
     var dienteSeleccionado = null;
-    var caraSeleccionada = null;
 
 	function drawDiente(svg, parentGroup, diente){
 		if(!diente) throw new Error('Error no se ha especificado el diente.');
@@ -41,7 +40,7 @@ jQuery(function(){
 	    	{fill: 'navy', stroke: 'navy', strokeWidth: 0.1, style: 'font-size: 6pt;font-weight:normal'});
     	caraCompleto = $(caraCompleto).data('cara', 'X');
 
-		//Busco los tratamientos aplicados al diente
+		// Se aplica un color de fondo a las caras con tratamiento.
 		var tratamientosAplicadosAlDiente = ko.utils.arrayFilter(vm.tratamientosAplicados(), function(t){
 			return t.diente.id == diente.id;
 		});
@@ -56,7 +55,16 @@ jQuery(function(){
 			var t = tratamientosAplicadosAlDiente[i];
 			caras[t.cara].attr('fill', 'red');
 		};
+		
+        // Se aplica un color de fondo al diente seleccionado.
+        dienteSeleccionado = vm.dienteSeleccionado;
+        if (dienteSeleccionado !== null) {
+            if (dienteSeleccionado.id == diente.id) {
+                caras[vm.caraSeleccionada].attr('fill', 'blue');
+            }
+        }
 
+        // Se asignan los eventos.
 		$.each([caraCentral, caraIzquierda, caraDerecha, caraInferior, caraSuperior, caraCompleto], function(index, value){
 	    	value.click(function(){
 	    		var me = $(this);
@@ -83,10 +91,9 @@ jQuery(function(){
 				
 				$("#div-tratamiento").removeClass("hidden");
 				
-				dienteSeleccionado = diente;
-				caraSeleccionada = cara;
-				
-				vm.tratamientosAplicados.push({diente: dienteSeleccionado, cara: caraSeleccionada, tratamiento: ""});
+				vm.caraSeleccionada = cara;
+				vm.dienteSeleccionado = diente;
+				vm.tratamientosAplicados.push({diente: vm.dienteSeleccionado, cara: vm.caraSeleccionada, tratamiento: ""});
 				
 				//me.attr('fill', 'red');
 
@@ -105,7 +112,7 @@ jQuery(function(){
 	
 	$("#btn-guardar").click(function() {
 	    var tratamiento = $("#txt-tratamiento").val();
-	    vm.tratamientosAplicados.push({diente: dienteSeleccionado, cara: caraSeleccionada, tratamiento: tratamiento});
+	    vm.tratamientosAplicados.push({diente: vm.dienteSeleccionado, cara: vm.caraSeleccionada, tratamiento: tratamiento});
 	});
 
 	function renderSvg(){
@@ -138,15 +145,17 @@ jQuery(function(){
 		self.tratamientosPosibles = ko.observableArray([]);
 		self.tratamientoSeleccionado = ko.observable(null);
 		self.tratamientosAplicados = ko.observableArray([]);
+		self.dienteSeleccionado = ko.observable(null);
+		self.caraSeleccionada = ko.observable(null);
 
 		self.quitarTratamiento = function(tratamiento){
 			self.tratamientosAplicados.remove(tratamiento);
 			renderSvg();
 		}
 
-		//Cargo los dientes
+		// Cargo los dientes
 		var dientes = [];
-		//Dientes izquierdos
+		// Dientes izquierdos
 		for(var i = 0; i < 8; i++){
 			dientes.push(new DienteModel(18 - i, i * 25, 0));
 		}
@@ -159,7 +168,7 @@ jQuery(function(){
 		for(var i = 0; i < 8; i++){
 			dientes.push(new DienteModel(48 - i, i * 25, 3 * 40));
 		}
-		//Dientes derechos
+		// Dientes derechos
 		for(var i = 0; i < 8; i++){
 			dientes.push(new DienteModel(21 + i, i * 25 + 210, 0));
 		}
