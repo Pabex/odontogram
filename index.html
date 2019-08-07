@@ -5,109 +5,147 @@
 <!--[if IE 8]>    <html class="no-js ie8 oldie" lang="en"> <![endif]-->
 <!-- Consider adding an manifest.appcache: h5bp.com/d/Offline -->
 <!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
-<head>
-  <meta charset="utf-8">
+    <head>
+        <meta charset="utf-8">
 
-  <!-- Use the .htaccess and remove these lines to avoid edge case issues.
-       More info: h5bp.com/b/378 -->
-  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+        <!-- Use the .htaccess and remove these lines to avoid edge case issues.
+             More info: h5bp.com/b/378 -->
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title>Odontograma</title>
-  <meta name="description" content="">
-  <meta name="author" content="">
+        <title>Odontograma</title>
+        <meta name="description" content="">
+        <meta name="author" content="">
 
-  <!-- Mobile viewport optimized: j.mp/bplateviewport -->
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+        <!-- Mobile viewport optimized: j.mp/bplateviewport -->
+        <meta name="viewport" content="width=device-width,initial-scale=1">
 
-  <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
+        <!-- Place favicon.ico and apple-touch-icon.png in the root directory: mathiasbynens.be/notes/touch-icons -->
 
-  <!-- CSS: implied media=all -->
-  <!-- CSS concatenated and minified via ant build script-->
-  <link rel="stylesheet" href="public/css/style.css">
-  <link rel="stylesheet" href="public/css/jquery-ui-1.8.17.custom.css">
-  <link rel="stylesheet" href="public/css/jquery.svg.css">
-  <link rel="stylesheet" href="public/css/odontograma.css">
-  <!-- end CSS-->
+        <!-- CSS: implied media=all -->
+        <!-- CSS concatenated and minified via ant build script-->
+        <link rel="stylesheet" href="public/css/style.css">
+        <link rel="stylesheet" href="public/css/jquery-ui-1.8.17.custom.css">
+        <link rel="stylesheet" href="public/css/jquery.svg.css">
+        <link rel="stylesheet" href="public/css/odontograma.css">
+        <!-- end CSS-->
 
-  <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
+        <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
 
-  <!-- All JavaScript at the bottom, except for Modernizr / Respond.
-       Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-       For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
-  <script src="public/js/modernizr-2.0.6.min.js"></script>
+        <!-- All JavaScript at the bottom, except for Modernizr / Respond.
+             Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
+             For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
+        <script src="public/js/modernizr-2.0.6.min.js"></script>
 
-</head>
+    </head>
 
-<body>
+    <body>
 
-  <div class="container">
-    <div id="main" role="main">
-      <div id="odontograma-wrapper">
-        <h2>Odontograma</h2>
-        <div id="odontograma"></div>
-      </div>
-    </div>
+        <div class="container">
+            <div id="main" role="main">
+                <div class="row">
+                    <div class="col-lg-5">
+                        <div id="odontograma-wrapper">
+                            <h2 style="text-align: center; margin-bottom: 8px;">Odontograma</h2>
+                            <div id="odontograma"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
 
-    <div id="div-tratamiento" class="hidden">
-      <div class="row">
-        <div class="col-lg-4">
-          <label>Tratamiento</label>
-          <input type="text" class="form-control" id="txt-tratamiento" />
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-lg-4">
-          <input type="button" value="Guardar" class="btn btn-primary" id="btn-guardar" />
-          <input type="button" value="Eliminar" class="btn btn-danger" id="btn-eliminar" />
-        </div>
-      </div>
-    </div>
-    
-  </div> <!--! end of #container -->
+            <div id="div-tratamiento" class="hidden">
+                <div class="row">
+                    <div class="col-lg-4">
+                        <label>Tratamiento: <span id="label-diente-seleccionado"></span></label>
+                        <input type="text" class="form-control" id="txt-tratamiento" maxlength="50" />
+                    </div>
+                </div>
+                <div class="row" style="margin-top: 5px;">
+                    <div class="col-lg-4">
+                        <input type="button" value="Guardar" class="btn btn-primary" id="btn-guardar-tratamiento" />
+                        <input type="button" value="Eliminar" class="btn btn-danger" id="btn-eliminar-tratamiento" />
+                    </div>
+                </div>
+            </div>
 
-  <!-- scripts concatenated and minified via ant build script-->
-  
-  <script
-  src="https://code.jquery.com/jquery-2.2.4.min.js"
-  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
-  crossorigin="anonymous"></script>
-  
-  <script defer src="public/js/plugins.js"></script>
-  <script defer src="public/js/jquery-ui-1.8.17.custom.min.js"></script>
-  <script defer src="public/js/jquery.tmpl.js"></script>
-  <script defer src="public/js/knockout-2.0.0.js"></script>
-  <script defer src="public/js/jquery.svg.min.js"></script>
-  <script defer src="public/js/jquery.svggraph.min.js"></script>
-  
+        </div> <!--! end of #container -->
 
-    <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+        <!-- scripts concatenated and minified via ant build script-->
 
-    <!-- Optional theme -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+        <script
+            src="https://code.jquery.com/jquery-2.2.4.min.js"
+            integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+        crossorigin="anonymous"></script>
 
-    <!-- Latest compiled and minified JavaScript -->
-    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-
-  <script defer src="public/js/odontograma.js"></script>
-  <!-- end scripts-->
+        <script defer src="public/js/plugins.js"></script>
+        <script defer src="public/js/jquery-ui-1.8.17.custom.min.js"></script>
+        <script defer src="public/js/jquery.tmpl.js"></script>
+        <script defer src="public/js/knockout-2.0.0.js"></script>
+        <script defer src="public/js/jquery.svg.min.js"></script>
+        <script defer src="public/js/jquery.svggraph.min.js"></script>
 
 
-  <!-- Change UA-XXXXX-X to be your site's ID -->
-  <script>
-    window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
-    Modernizr.load({
-      load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
-    });
-  </script>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+        <!-- Optional theme -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+        <!-- Latest compiled and minified JavaScript -->
+        <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+        <script defer src="public/js/odontograma.js"></script>
+        <!-- end scripts-->
 
 
-  <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
-       chromium.org/developers/how-tos/chrome-frame-getting-started -->
-  <!--[if lt IE 7 ]>
-    <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
-    <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
-  <![endif]-->
+        <!-- Change UA-XXXXX-X to be your site's ID -->
+        <script>
+            window._gaq = [['_setAccount', 'UAXXXXXXXX1'], ['_trackPageview'], ['_trackPageLoadTime']];
+            Modernizr.load({
+                load: ('https:' == location.protocol ? '//ssl' : '//www') + '.google-analytics.com/ga.js'
+            });
+        </script>
 
-</body>
+
+        <!-- Prompt IE 6 users to install Chrome Frame. Remove this if you want to support IE 6.
+             chromium.org/developers/how-tos/chrome-frame-getting-started -->
+        <!--[if lt IE 7 ]>
+          <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
+          <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
+        <![endif]-->
+
+        <div class="modal fade" id="modal-guardado-exito" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Éxito</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Guardado con éxito.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-aceptar-guardado">Aceptar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+        <div class="modal fade" id="modal-eliminado-exito" tabindex="-1" role="dialog">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Éxito</h4>
+                    </div>
+                    <div class="modal-body">
+                        <p>Eliminado con éxito.</p>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-primary" id="btn-aceptar-eliminado">Aceptar</button>
+                    </div>
+                </div><!-- /.modal-content -->
+            </div><!-- /.modal-dialog -->
+        </div><!-- /.modal -->
+
+    </body>
 </html>
