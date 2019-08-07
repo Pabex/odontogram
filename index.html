@@ -12,7 +12,7 @@
        More info: h5bp.com/b/378 -->
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <title></title>
+  <title>Odontograma</title>
   <meta name="description" content="">
   <meta name="author" content="">
 
@@ -35,55 +35,64 @@
        Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
        For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
   <script src="public/js/modernizr-2.0.6.min.js"></script>
+
 </head>
 
 <body>
 
-  <div id="container">
-    <header>
-      <h1>Clip Soluciones<h1>
-    </header>
-    <div id="main" role="main">      
-      <div id="tratamiento">
-        <h2>Tratamiento</h2>
-        <select 
-          data-bind=" options: tratamientosPosibles, 
-                      value: tratamientoSeleccionado, 
-                      optionsText: function(item){ return item.nombre; },
-                      optionsCaption: 'Seleccione un tratamiento...'">
-        </select>
-        <ul data-bind="foreach: tratamientosAplicados">
-          <li>
-            P<span data-bind="text: diente.id"></span><span data-bind="text: cara"></span>
-            -            
-            <span data-bind="text: tratamiento.nombre"></span>
-            | 
-            <a href="#" data-bind="click: $parent.quitarTratamiento">Eliminar</a>
-          </li>
-        </ul>
-      </div>
+  <div class="container">
+    <div id="main" role="main">
       <div id="odontograma-wrapper">
         <h2>Odontograma</h2>
         <div id="odontograma"></div>
-      </div>      
+      </div>
     </div>
-    <footer>
-      
-    </footer>
-  </div> <!--! end of #container -->  
+
+    <div id="div-tratamiento" class="hidden">
+      <div class="row">
+        <div class="col-lg-4">
+          <label>Tratamiento</label>
+          <input type="text" class="form-control" id="txt-tratamiento" />
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-lg-4">
+          <input type="button" value="Guardar" class="btn btn-primary" id="btn-guardar" />
+          <input type="button" value="Eliminar" class="btn btn-danger" id="btn-eliminar" />
+        </div>
+      </div>
+    </div>
+    
+  </div> <!--! end of #container -->
 
   <!-- scripts concatenated and minified via ant build script-->
-  <script defer src="public/js/jquery-1.7.1.min.js"></script>
+  
+  <script
+  src="https://code.jquery.com/jquery-2.2.4.min.js"
+  integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
+  crossorigin="anonymous"></script>
+  
   <script defer src="public/js/plugins.js"></script>
   <script defer src="public/js/jquery-ui-1.8.17.custom.min.js"></script>
   <script defer src="public/js/jquery.tmpl.js"></script>
   <script defer src="public/js/knockout-2.0.0.js"></script>
-  <script defer src="public/js/jquery.svg.min.js"></script>  
-  <script defer src="public/js/jquery.svggraph.min.js"></script>  
+  <script defer src="public/js/jquery.svg.min.js"></script>
+  <script defer src="public/js/jquery.svggraph.min.js"></script>
+  
+
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script defer src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
   <script defer src="public/js/odontograma.js"></script>
   <!-- end scripts-->
 
-	
+
   <!-- Change UA-XXXXX-X to be your site's ID -->
   <script>
     window._gaq = [['_setAccount','UAXXXXXXXX1'],['_trackPageview'],['_trackPageLoadTime']];
@@ -99,6 +108,6 @@
     <script src="//ajax.googleapis.com/ajax/libs/chrome-frame/1.0.3/CFInstall.min.js"></script>
     <script>window.attachEvent('onload',function(){CFInstall.check({mode:'overlay'})})</script>
   <![endif]-->
-  
+
 </body>
 </html>
