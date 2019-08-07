@@ -28,19 +28,11 @@
         <link rel="stylesheet" href="public/css/jquery.svg.css">
         <link rel="stylesheet" href="public/css/odontograma.css">
         <!-- end CSS-->
-
-        <!-- More ideas for your <head> here: h5bp.com/d/head-Tips -->
-
-        <!-- All JavaScript at the bottom, except for Modernizr / Respond.
-             Modernizr enables HTML5 elements & feature detects; Respond is a polyfill for min/max-width CSS3 Media Queries
-             For optimal performance, use a custom Modernizr build: www.modernizr.com/download/ -->
-        <script src="public/js/modernizr-2.0.6.min.js"></script>
-
     </head>
 
     <body>
 
-        <div class="container">
+        <div class="container hidden" id="contenedor-principal-odontograma">
             <div class="row">
                 <div class="col-lg-7">
                     <div id="odontograma-wrapper">
@@ -83,7 +75,7 @@
                 </div>
             </div>
 
-        </div> <!--! end of #container -->
+        </div>
 
         <!-- scripts concatenated and minified via ant build script-->
 
@@ -92,12 +84,8 @@
             integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44="
         crossorigin="anonymous"></script>
 
-        <script defer src="public/js/plugins.js"></script>
-        <script defer src="public/js/jquery-ui-1.8.17.custom.min.js"></script>
-        <script defer src="public/js/jquery.tmpl.js"></script>
         <script defer src="public/js/knockout-2.0.0.js"></script>
         <script defer src="public/js/jquery.svg.min.js"></script>
-        <script defer src="public/js/jquery.svggraph.min.js"></script>
 
 
         <!-- Latest compiled and minified CSS -->
@@ -125,9 +113,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btn-aceptar-guardado">Aceptar</button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
         <div class="modal fade" id="modal-eliminado-exito" tabindex="-1" role="dialog">
             <div class="modal-dialog" role="document">
@@ -142,9 +130,9 @@
                     <div class="modal-footer">
                         <button type="button" class="btn btn-primary" id="btn-aceptar-eliminado">Aceptar</button>
                     </div>
-                </div><!-- /.modal-content -->
-            </div><!-- /.modal-dialog -->
-        </div><!-- /.modal -->
+                </div>
+            </div>
+        </div>
 
     </body>
 </html>
